@@ -56,7 +56,8 @@ public:
 
     Graphics(); // Конструктор
     ~Graphics(); // Деструктор
-
+	
+	bool Graphics::Load3DModel(WCHAR* MeshFile, WCHAR* TextureFile);
 	HRESULT InitD3D(HWND hWnd);
 	void Resize(int x, int y);
 	void Render();

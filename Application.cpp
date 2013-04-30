@@ -265,6 +265,7 @@ LRESULT CALLBACK StaticWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 		case WM_PAINT:
 		{
 			double fTime, fAbsTime; float fElapsedTime;
+			fTime = fAbsTime = fElapsedTime = 0;
 			// Render the scene by calling the app's render callback
 			LPCALLBACKFRAMERENDER pCallbackFrameRender = GetApplicationState().GetFrameRenderFunc();
 			if( pCallbackFrameRender != NULL )

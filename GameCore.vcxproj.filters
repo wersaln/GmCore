@@ -25,6 +25,15 @@
     <Filter Include="GraphicCore\Source Files">
       <UniqueIdentifier>{aa023466-5104-4113-9ea6-38967799616e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NetworkCore">
+      <UniqueIdentifier>{2608a2d8-86d5-4737-b69f-cd0ec2660f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetworkCore\Header Files">
+      <UniqueIdentifier>{cec92013-79ef-45b7-b03d-f52f91d97152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetworkCore\Sourse Files">
+      <UniqueIdentifier>{34b8944b-831e-4fc2-982e-06033ce74f92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -34,6 +43,9 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>GraphicCore\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Network.cpp">
+      <Filter>NetworkCore\Sourse Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -41,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="Graphics.h">
       <Filter>GraphicCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Network.h">
+      <Filter>NetworkCore\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

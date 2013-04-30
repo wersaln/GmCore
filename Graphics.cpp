@@ -2,6 +2,25 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include "Graphics.h"
+
+#ifndef V
+#define V(x)           { hr = (x); }
+#endif
+#ifndef V_RETURN
+#define V_RETURN(x)    { hr = (x); if( FAILED(hr) ) { return hr; } }
+#endif
+
+#ifndef SAFE_DELETE
+#define SAFE_DELETE(p)       { if (p) { delete (p);     (p)=NULL; } }
+#endif    
+#ifndef SAFE_DELETE_ARRAY
+#define SAFE_DELETE_ARRAY(p) { if (p) { delete[] (p);   (p)=NULL; } }
+#endif    
+#ifndef SAFE_RELEASE
+#define SAFE_RELEASE(p)      { if (p) { (p)->Release(); (p)=NULL; } }
+#endif
+
+
 //#define SAFE_DELETE(p)       { if (p) { delete (p);     (p) = NULL; } }
 //
 //HRESULT WINAPI GraphicsCreateState();
@@ -175,4 +194,79 @@ void  Graphics::Render()
 
     // Present the backbuffer contents to the display
     g_pD3D9Device->Present( NULL, NULL, NULL, NULL );
+}
+//HRESULT LoadMesh( IDirect3DDevice9* g_pd3dDevice, WCHAR* strFileName, ID3DXMesh** g_Mesh, )
+//{
+//LPD3DXBUFFER pD3DXMtrlBuffer;
+//
+//    // Load the mesh from the specified file
+//    if( FAILED( D3DXLoadMeshFromX( L"Tiger.x", D3DXMESH_SYSTEMMEM,
+//                                   g_pd3dDevice, NULL,
+//                                   &pD3DXMtrlBuffer, NULL, &g_dwNumMaterials,
+//                                   &g_pMesh ) ) )
+//    {
+//        // If model is not in current folder, try parent folder
+//        if( FAILED( D3DXLoadMeshFromX( L"..\\Tiger.x", D3DXMESH_SYSTEMMEM,
+//                                       g_pd3dDevice, NULL,
+//                                       &pD3DXMtrlBuffer, NULL, &g_dwNumMaterials,
+//                                       &g_pMesh ) ) )
+//        {
+//            MessageBox( NULL, L"Could not find tiger.x", L"Meshes.exe", MB_OK );
+//            return E_FAIL;
+//        }
+//    }
+//
+//    // We need to extract the material properties and texture names from the 
+//    // pD3DXMtrlBuffer
+//    D3DXMATERIAL* d3dxMaterials = ( D3DXMATERIAL* )pD3DXMtrlBuffer->GetBufferPointer();
+//    g_pMeshMaterials = new D3DMATERIAL9[g_dwNumMaterials];
+//    if( g_pMeshMaterials == NULL )
+//        return E_OUTOFMEMORY;
+//    g_pMeshTextures = new LPDIRECT3DTEXTURE9[g_dwNumMaterials];
+//    if( g_pMeshTextures == NULL )
+//        return E_OUTOFMEMORY;
+//
+//    for( DWORD i = 0; i < g_dwNumMaterials; i++ )
+//    {
+//        // Copy the material
+//        g_pMeshMaterials[i] = d3dxMaterials[i].MatD3D;
+//
+//        // Set the ambient color for the material (D3DX does not do this)
+//        g_pMeshMaterials[i].Ambient = g_pMeshMaterials[i].Diffuse;
+//
+//        g_pMeshTextures[i] = NULL;
+//        if( d3dxMaterials[i].pTextureFilename != NULL &&
+//            lstrlenA( d3dxMaterials[i].pTextureFilename ) > 0 )
+//        {
+//            // Create the texture
+//            if( FAILED( D3DXCreateTextureFromFileA( g_pd3dDevice,
+//                                                    d3dxMaterials[i].pTextureFilename,
+//                                                    &g_pMeshTextures[i] ) ) )
+//            {
+//                // If texture is not in current folder, try parent folder
+//                const CHAR* strPrefix = "..\\";
+//                CHAR strTexture[MAX_PATH];
+//                strcpy_s( strTexture, MAX_PATH, strPrefix );
+//                strcat_s( strTexture, MAX_PATH, d3dxMaterials[i].pTextureFilename );
+//                // If texture is not in current folder, try parent folder
+//                if( FAILED( D3DXCreateTextureFromFileA( g_pd3dDevice,
+//                                                        strTexture,
+//                                                        &g_pMeshTextures[i] ) ) )
+//                {
+//                    MessageBox( NULL, L"Could not find texture map", L"Meshes.exe", MB_OK );
+//                }
+//            }
+//        }
+//    }
+//
+//    // Done with the material buffer
+//    pD3DXMtrlBuffer->Release();
+//
+//    return S_OK;
+//}
+
+bool Graphics::Load3DModel(WCHAR* MeshFile, WCHAR* TextureFile)
+{
+	//LoadMesh( g_pD3D9Device, MeshFile, &g_pMesh );
+	return true;
 }
